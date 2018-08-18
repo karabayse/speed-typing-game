@@ -50,9 +50,9 @@ function init() {
 }
 
 // Pick and show random word
-// function showWord(words) {
-//   // Generate random array index
-//   const randIndex = Math.floor(Math.random() * words.length);
-//   // Output random word
-//   currentWord.
-// }
+function showWord(words) {
+  // Generate random array index
+  const randIndex = Math.floor(Math.random() * words.length);
+  // Output random word
+  currentWord.innerHTML = words[randIndex];
+}
