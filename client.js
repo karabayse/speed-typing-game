@@ -1,12 +1,20 @@
 window.addEventListener('load', init);
 
-// Global Variables
-let time = 5;
+// GLOBAL VARIABLES
+// Available Levels
+const levels = {
+  easy: 5,
+  medium: 3,
+  hard: 1
+};
+// To Change Level
+const currentLevel = levels.easy;
+let time = currentLevel;
 let score = 0;
 // Initialize -> game is going on = true
 let isPlaying;
 
-// DOM Elements
+// DOM ELEMENTS
 const wordInput = document.querySelector('#word-input');
 const currentWord = document.querySelector('#current-word');
 const scoreDisplay = document.querySelector('#score');
@@ -42,9 +50,11 @@ const words = [
   'definition'
 ];
 
-// Initialize Game
+// INITIALIZE GAME
 function init() {
   console.log('init');
+  // Show number of seconds in UI
+  seconds.innerHTML = currentLevel;
   // Load word from array
   showWord(words);
   // Start matching on word input
@@ -55,12 +65,12 @@ function init() {
   setInterval(checkStatus, 50);
 }
 
-// Start Match
+// START MATCH
 function startMatch() {
   if (matchWords()) {
     console.log('MATCH!');
     isPlaying = true;
-    time = 6;
+    time = currentLevel + 1;
     showWord(words);
     wordInput.value = '';
     score++;
@@ -92,7 +102,7 @@ function showWord(words) {
   currentWord.innerHTML = words[randIndex];
 }
 
-// Countdown Timer
+// COUNTDOWN TIMER
 function countdown() {
   // Make sure time has not run out
   if(time > 0) {
@@ -106,7 +116,7 @@ function countdown() {
   timeDisplay.innerHTML = time;
 }
 
-// Check Game Status
+// CHECK GAME STATUS
 function checkStatus() {
   if (!isPlaying && time === 0) {
     message.innerHTML = 'Game Over!!!';
